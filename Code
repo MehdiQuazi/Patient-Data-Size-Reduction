@@ -1,1 +1,24 @@
+%The real patient data folder contains the MRI data in the form of a NIfTI file. This data was obtained by the full MRI protocol.
+%Because we are assessing the impact of shortened MRI acquisition protocols and comparing it to the full protocol, we must reduce the size of the
+MRI data before we can process it with the acquisition protocol specific-deep learning models we have trained.
 
+%Load the data by defining the pathway to it
+I_nii = load_untouch_nii('D:/');I = I_nii.img;
+
+%Re-define the size of the data
+I_sub1 = I (:,:,:,[Define here according to the text file volumes/numbering]);
+
+%An example below
+I_sub1 = I (:,:,:,[1:4 9:12 17:20 25:28 33:36 41:72 108:125 148:153]);
+
+%Find the new size of the data
+size(I_sub1)
+
+%Define new size
+I_nii.hdr.dime.dim(5) = 76;
+
+%Save the new (reduced) MRI data
+I_nii.img = I_sub1;
+save_untouch_nii(I_nii,'Edit file name here');
+
+%This new MRI data can then be processed with the deep learning model code.
