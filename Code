@@ -1,3 +1,7 @@
+NOTE: This requires the code to train the deep learning models which belongs to the original owners (Dr Marco Palombo and Dr Matteo Figini) who I could
+not recieve permission from to share the code.
+
+%This is all run in MATLAB.
 %The real patient data folder contains the MRI data in the form of a NIfTI file. This data was obtained by the full MRI protocol.
 %Because we are assessing the impact of shortened MRI acquisition protocols and comparing it to the full protocol, we must reduce the size of the
 MRI data before we can process it with the acquisition protocol specific-deep learning models we have trained.
@@ -15,7 +19,7 @@ I_sub1 = I (:,:,:,[1:4 9:12 17:20 25:28 33:36 41:72 108:125 148:153]);
 size(I_sub1)
 
 %Define new size
-I_nii.hdr.dime.dim(5) = 76;
+I_nii.hdr.dime.dim(5) = (enter the size given once you run the line above);
 
 %Save the new (reduced) MRI data
 I_nii.img = I_sub1;
